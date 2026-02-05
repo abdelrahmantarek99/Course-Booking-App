@@ -1,0 +1,42 @@
+<h2>Students</h2>
+
+<!-- Student Form -->
+<div class="student-form">
+  <input [(ngModel)]="model.name" placeholder="Name" />
+  <input [(ngModel)]="model.email" placeholder="Email" />
+  <input [(ngModel)]="model.phone" placeholder="Phone" />
+
+  <button (click)="save()" class="btn-save">
+    {{ model.id === -1 ? 'Add Student' : 'Update Student' }}
+  </button>
+  <button (click)="reset()" class="btn-reset">Reset</button>
+</div>
+
+<!-- Student Table -->
+<table class="table-student" *ngIf="students.length > 0; else noStudents">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Phone</th>
+      <th>Enrollments</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let s of students">
+      <td>{{ s.name }}</td>
+      <td>{{ s.email }}</td>
+      <td>{{ s.phone }}</td>
+      <td>{{ s.enrollmentCount }}</td>
+      <td>
+        <button class="btn-edit" (click)="edit(s)">Edit</button>
+        <button class="btn-delete" (click)="delete(s.id)">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<ng-template #noStudents>
+  <p>No students available.</p>
+</ng-template>

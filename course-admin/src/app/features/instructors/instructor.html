@@ -1,0 +1,57 @@
+<h2>Instructors</h2>
+
+<!-- Form for Create / Edit -->
+<div style="margin-bottom: 20px; border: 1px solid #ccc; padding: 10px; max-width: 400px;">
+  <h3>{{ model.id === -1 ? 'Add New Instructor' : 'Edit Instructor' }}</h3>
+
+  <label>
+    Name:
+    <input [(ngModel)]="model.name" placeholder="Enter name" />
+  </label>
+  <br /><br />
+
+  <label>
+    Email:
+    <input [(ngModel)]="model.email" placeholder="Enter email" />
+  </label>
+  <br /><br />
+
+  <label>
+    Bio:
+    <input [(ngModel)]="model.bio" placeholder="Enter bio" />
+  </label>
+  <br /><br />
+
+  <button (click)="save()">{{ model.id === -1 ? 'Create' : 'Update' }}</button>
+  <button (click)="reset()" *ngIf="model.id !== -1">Cancel</button>
+</div>
+
+<!-- Table of Instructors -->
+<table border="1" cellspacing="0" cellpadding="5" style="width: 100%;">
+  <thead style="background-color: #f0f0f0;">
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Bio</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let i of instructors">
+      <td>{{ i.id }}</td>
+      <td>{{ i.name }}</td>
+      <td>{{ i.email }}</td>
+      <td>{{ i.bio }}</td>
+      <td>
+
+        <button class="btn-edit" (click)="edit(i)">Edit</button>
+        <button class="btn-delete" (click)="delete(i.id)">Delete</button>
+
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- Optional: show message if no instructors -->
+<p *ngIf="instructors.length === 0">No instructors available.</p>

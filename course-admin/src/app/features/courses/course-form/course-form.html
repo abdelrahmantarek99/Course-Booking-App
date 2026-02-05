@@ -1,0 +1,35 @@
+<h2>Create Course</h2>
+
+<form [formGroup]="form" (ngSubmit)="submit()">
+  <div>
+    <label>Title:</label>
+    <input formControlName="title" />
+  </div>
+
+  <div>
+    <label>Duration (hours):</label>
+    <input type="number" formControlName="durationHours" />
+  </div>
+
+  <div>
+    <label>Description:</label>
+    <input formControlName="description" />
+  </div>
+
+  <div>
+    <label>Price:</label>
+    <input type="number" formControlName="price" />
+  </div>
+
+  <div>
+    <label>Instructor:</label>
+    <select formControlName="instructorId">
+      <option value="" disabled selected>Select Instructor</option>
+      <option *ngFor="let ins of instructors" [value]="ins.id">{{ ins.name }}</option>
+    </select>
+  </div>
+
+  <button type="submit" [disabled]="form.invalid">Create</button>
+
+  <p *ngIf="error" style="color:red">{{ error }}</p>
+</form>

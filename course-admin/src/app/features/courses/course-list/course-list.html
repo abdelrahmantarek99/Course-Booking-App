@@ -1,0 +1,38 @@
+<div class="table-card">
+  <h2>Courses</h2>
+
+  <table class="data-table" *ngIf="courses.length > 0; else noCourses">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Instructor</th>
+        <th>Duration (hrs)</th>
+        <th>Price</th>
+        <th class="actions-col">Actions</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let course of courses">
+        <td>{{ course.title }}</td>
+        <td>{{ course.instructorName }}</td>
+        <td>{{ course.durationHours }}</td>
+        <td>{{ course.price }}</td>
+        <td class="actions">
+
+          <button class="btn delete"
+                  (click)="deleteCourse(course.id)"
+                  [disabled]="!course.id">
+            Delete
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <ng-template #noCourses>
+    <p class="empty">No courses available.</p>
+  </ng-template>
+
+  <p class="error" *ngIf="error">{{ error }}</p>
+</div>

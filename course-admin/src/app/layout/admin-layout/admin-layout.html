@@ -1,0 +1,41 @@
+<div class="admin-container">
+  <!-- Sidebar Tabs -->
+  <div class="sidebar">
+    <h2>Admin Menu</h2>
+    <button (click)="selectTab('welcome')" [class.active]="activeTab === 'welcome'">Welcome</button>
+    <button (click)="selectTab('courses')" [class.active]="activeTab === 'courses'">Courses</button>
+    <button (click)="selectTab('instructors')" [class.active]="activeTab === 'instructors'">Instructors</button>
+    <button (click)="selectTab('students')" [class.active]="activeTab === 'students'">Students</button>
+
+    <!-- Add more tabs later: Bookings -->
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <!-- Welcome Tab -->
+    <div *ngIf="activeTab === 'welcome'" class="welcome-tab">
+      <h1>Welcome to CourseBooking Admin!</h1>
+      <p>Here you can manage Courses, Instructors, Students, and Bookings.</p>
+      <ul>
+        <li><b>Courses Tab:</b> Create, Update, Delete courses.</li>
+        <li><b>Instructors Tab:</b> Manage instructors info.</li>
+        <li><b>Students Tab:</b> Manage student info.</li>
+      </ul>
+    </div>
+
+    <!-- Courses Tab -->
+    <div *ngIf="activeTab === 'courses'">
+      <app-courses></app-courses>
+    </div>
+
+    <!-- Instructors Tab -->
+    <div *ngIf="activeTab === 'instructors'">
+      <app-instructors></app-instructors>
+    </div>
+
+    <!-- Students Tab -->
+    <div *ngIf="activeTab === 'students'">
+      <app-students></app-students>
+    </div>
+  </div>
+</div>
