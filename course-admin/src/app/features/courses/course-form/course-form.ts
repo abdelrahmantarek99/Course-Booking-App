@@ -66,7 +66,9 @@ export class CourseFormComponent implements OnInit {
       next: () => {
         alert('Course created successfully');
         this.form.reset();
-        ///this.router.navigate(['/courses']); // like refresh 
+        this.cdr.detectChanges();
+        // notify list to reload list
+        this.courseService.notifyRefresh();
       },
       error: () => {
         let msg = 'Something went wrong while creating the course. please check your input';

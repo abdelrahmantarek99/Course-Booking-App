@@ -3,9 +3,13 @@
   <div class="sidebar">
     <h2>Admin Menu</h2>
     <button (click)="selectTab('welcome')" [class.active]="activeTab === 'welcome'">Welcome</button>
-    <button (click)="selectTab('courses')" [class.active]="activeTab === 'courses'">Courses</button>
     <button (click)="selectTab('instructors')" [class.active]="activeTab === 'instructors'">Instructors</button>
     <button (click)="selectTab('students')" [class.active]="activeTab === 'students'">Students</button>
+    <button (click)="selectTab('courses')" [class.active]="activeTab === 'courses'">Courses</button>
+    <button (click)="selectTab('enrollments')"
+            [class.active]="activeTab === 'enrollments'">
+      Enrollments
+    </button>
 
     <!-- Add more tabs later: Bookings -->
   </div>
@@ -15,18 +19,17 @@
     <!-- Welcome Tab -->
     <div *ngIf="activeTab === 'welcome'" class="welcome-tab">
       <h1>Welcome to CourseBooking Admin!</h1>
-      <p>Here you can manage Courses, Instructors, Students, and Bookings.</p>
+      <p>Here you can manage Instructors, Students, Courses and Bookings.</p>
+
       <ul>
-        <li><b>Courses Tab:</b> Create, Update, Delete courses.</li>
-        <li><b>Instructors Tab:</b> Manage instructors info.</li>
-        <li><b>Students Tab:</b> Manage student info.</li>
+        <li><b>Instructors Tab:</b> Manage instructor information.</li>
+        <li><b>Students Tab:</b> Manage students and their data.</li>
+        <li><b>Courses Tab:</b> Create, update, and delete courses.</li>
+        <li><b>Enrollments Tab:</b> Enroll students into courses.</li>
       </ul>
     </div>
 
-    <!-- Courses Tab -->
-    <div *ngIf="activeTab === 'courses'">
-      <app-courses></app-courses>
-    </div>
+
 
     <!-- Instructors Tab -->
     <div *ngIf="activeTab === 'instructors'">
@@ -37,5 +40,16 @@
     <div *ngIf="activeTab === 'students'">
       <app-students></app-students>
     </div>
+
+    <!-- Courses Tab -->
+    <div *ngIf="activeTab === 'courses'">
+      <app-courses></app-courses>
+    </div>
+
+    <!-- Enrollments Tab -->
+    <div *ngIf="activeTab === 'enrollments'">
+      <app-enrollment></app-enrollment>
+    </div>
+
   </div>
 </div>

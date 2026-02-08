@@ -1,14 +1,15 @@
 import { Injectable, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Course } from '../models/course.model';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CourseService {
   private apiUrl = 'http://localhost:5000/api/courses'; 
-
+  // notifier
+  refresh$ = new Subject<void>();
   constructor(private http: HttpClient) { }
 
   getAll(): Observable<Course[]> {
@@ -29,5 +30,9 @@ export class CourseService {
 
   delete(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
+  }
+
+  notifyRefresh() {
+    this.refresh$.next();
   }
 }

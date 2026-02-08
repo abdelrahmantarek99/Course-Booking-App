@@ -1,21 +1,20 @@
 <h2>Enroll Student</h2>
 
 <form [formGroup]="form" (ngSubmit)="submit()" class="form-container">
-
-  <div class="form-group">
+  <div>
     <label>Student</label>
     <select formControlName="studentId">
-      <option value="" disabled>Select Student</option>
+      <option value="">Select student</option>
       <option *ngFor="let s of students" [value]="s.id">
-        {{ s.name }} ({{ s.email }})
+        {{ s.name }}
       </option>
     </select>
   </div>
 
-  <div class="form-group">
+  <div>
     <label>Course</label>
     <select formControlName="courseId">
-      <option value="" disabled>Select Course</option>
+      <option value="">Select course</option>
       <option *ngFor="let c of courses" [value]="c.id">
         {{ c.title }}
       </option>
@@ -25,7 +24,40 @@
   <button type="submit" [disabled]="form.invalid">
     Enroll
   </button>
-
-  <p class="success" *ngIf="success">{{ success }}</p>
-  <p class="error" *ngIf="error">{{ error }}</p>
 </form>
+
+<!-- ALERTS -->
+<div *ngIf="success" class="alert success">{{ success }}</div>
+<div *ngIf="error" class="alert error">{{ error }}</div>
+
+<hr />
+
+<h3>All Enrollments</h3>
+
+<table class="data-table" *ngIf="enrollments.length; else noEnrollments">
+  <thead>
+    <tr>
+      <th>Student</th>
+      <th>Course</th>
+      <th>Enrolled At</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr *ngFor="let e of enrollments">
+      <td>{{ e.studentName }}</td>
+      <td>{{ e.courseTitle }}</td>
+      <td>{{ e.enrolledAt | date:'short' }}</td>
+      <td>
+        <button class="btn-delete" (click)="deleteEnrollment(e.id)">
+          Delete
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<ng-template #noEnrollments>
+  <p>No enrollments found.</p>
+</ng-template>

@@ -22,6 +22,11 @@ export class CourseListComponent implements OnInit {
 
   ngOnInit(): void {
     this.fetchCourses();
+    // waiting for notifications from course form
+
+    this.courseService.refresh$.subscribe(() => {
+      this.fetchCourses();
+    });
   }
 
   fetchCourses() {

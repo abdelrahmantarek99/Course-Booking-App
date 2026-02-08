@@ -62,6 +62,8 @@ export class InstructorsComponent implements OnInit {
           successMessage = 'Instructor created successfully ✅';
           this.load();
           this.reset();
+          alert(successMessage);
+
         },
         error: () => {
           errorMessage = 'Failed to create instructor ❌';
